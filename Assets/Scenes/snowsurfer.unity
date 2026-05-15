@@ -274,7 +274,7 @@ MonoBehaviour:
   IgnoreTimeScale: 0
   WorldUpOverride: {fileID: 0}
   ChannelMask: -1
-  UpdateMethod: 2
+  UpdateMethod: 0
   BlendUpdateMethod: 1
   LensModeOverride:
     Enabled: 0
@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 707602172}
   - component: {fileID: 707602171}
   - component: {fileID: 707602173}
+  - component: {fileID: 707602174}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -387,6 +388,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &707602174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707602170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e4e58257e364b3488882c08ade317d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1 &809918611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1157,7 @@ SurfaceEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Speed: 10
+  m_Speed: 11
   m_SpeedVariation: 0
   m_ForceScale: 1
   m_UseContactForce: 0

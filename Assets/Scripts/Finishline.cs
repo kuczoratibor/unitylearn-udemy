@@ -3,10 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class Finishline : MonoBehaviour
 {
+    [SerializeField] float restartDelay = 1f;
     void OnTriggerEnter2D(Collider2D other) {
         int layerindex = LayerMask.NameToLayer("Player");
         if (other.gameObject.layer == layerindex) {
-            SceneManager.LoadScene(0);
+            Invoke("ReloadScene", restartDelay);
         }
+    }
+    void ReloadScene() {
+        SceneManager.LoadScene(0);
     }
 }

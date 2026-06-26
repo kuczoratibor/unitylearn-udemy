@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float torqueAmount = 1f;
     [SerializeField] float baseSpeed = 11f;
-    [SerializeField] float boostSpeed = 15f;
+    [SerializeField] float boostSpeed = 13f;
     InputAction moveAction;
     Vector2 MoveVector;
     Rigidbody2D rb;

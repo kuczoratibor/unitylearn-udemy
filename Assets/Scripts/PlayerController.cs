@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float torqueAmount = 1f;
     [SerializeField] float baseSpeed = 11f;
     [SerializeField] float boostSpeed = 13f;
+    float totalRotation = 0f;
+    float previousRotation = 0f;
+    int flips = 0;
     InputAction moveAction;
     Vector2 MoveVector;
     Rigidbody2D rb;
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
         {
             RotatePlayer();
             BoostPlayer();
+            CalculateFlips();
         }
     }
     void RotatePlayer() {
@@ -41,6 +45,18 @@ public class PlayerController : MonoBehaviour
         else {
             surfaceEffector2D.speed = baseSpeed;
         }
+    }
+    void CalculateFlips() {
+        float currentRotation = transform.rotation.eulerAngles.z;
+        totalRotation += Mathf.DeltaAngle(previousRotation, currentRotation);
+        previousRotation = currentRotation;
+
+        if (totalRotation > 340 || totalRotation < -340) {
+            flips++;
+            totalRotation = 0f;
+        }
+
+        Debug.Log($"Flips: {flips}");
     }
     public void DisablePlayerControl()
     {

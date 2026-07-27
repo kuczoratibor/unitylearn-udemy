@@ -4,11 +4,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float torqueAmount = 1f;
-    [SerializeField] float baseSpeed = 11f;
-    [SerializeField] float boostSpeed = 13f;
+    [SerializeField] float baseSpeed = 8f;
+    [SerializeField] float boostSpeed = 10f;
     float totalRotation = 0f;
     float previousRotation = 0f;
-    int flips = 0;
     InputAction moveAction;
     Vector2 MoveVector;
     Rigidbody2D rb;
@@ -54,15 +53,31 @@ public class PlayerController : MonoBehaviour
         previousRotation = currentRotation;
 
         if (totalRotation > 340 || totalRotation < -340) {
-            flips++;
             scoreManager.AddScore(100);
             totalRotation = 0f;
         }
-
-        Debug.Log($"Flips: {flips}");
     }
     public void DisablePlayerControl()
     {
         canControlPlayer = false;
+    }
+    void ResetSpeed() {
+        baseSpeed = 8f;
+        boostSpeed = 10f;
+    }
+    void ResetTorque() {
+        torqueAmount = 7f;
+    }
+    public void ActivatePowerup(PowerupSO powerup)
+    {
+        if (powerup.GetPowerupType() == "speed") {
+            baseSpeed += powerup.GetValueChange();
+            boostSpeed += powerup.GetValueChange();
+            Invoke("ResetSpeed", powerup.GetDuration());
+        }
+        if (powerup.GetPowerupType() == "torque") {
+            torqueAmount += powerup.GetValueChange();
+            Invoke("ResetTorque", powerup.GetDuration());
+        }
     }
 }

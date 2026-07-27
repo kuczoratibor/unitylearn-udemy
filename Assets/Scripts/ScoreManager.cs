@@ -9,6 +9,6 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
-        scoreText.text = "Points: " + score;
+        scoreText.text = "SCORE: " + score;
     }
 }

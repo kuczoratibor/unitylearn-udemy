@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] ParticleSystem snowTrail;
     [SerializeField] float torqueAmount = 1f;
     [SerializeField] float baseSpeed = 8f;
     [SerializeField] float boostSpeed = 10f;
@@ -64,19 +65,23 @@ public class PlayerController : MonoBehaviour
     void ResetSpeed() {
         baseSpeed = 8f;
         boostSpeed = 10f;
+        snowTrail.startColor = Color.white;
     }
     void ResetTorque() {
         torqueAmount = 7f;
+        snowTrail.startColor = Color.white;
     }
     public void ActivatePowerup(PowerupSO powerup)
     {
         if (powerup.GetPowerupType() == "speed") {
             baseSpeed += powerup.GetValueChange();
             boostSpeed += powerup.GetValueChange();
+            snowTrail.startColor = Color.lightSkyBlue;
             Invoke("ResetSpeed", powerup.GetDuration());
         }
         if (powerup.GetPowerupType() == "torque") {
             torqueAmount += powerup.GetValueChange();
+            snowTrail.startColor = Color.orange;
             Invoke("ResetTorque", powerup.GetDuration());
         }
     }

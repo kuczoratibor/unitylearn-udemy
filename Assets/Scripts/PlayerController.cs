@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float boostSpeed = 10f;
     float totalRotation = 0f;
     float previousRotation = 0f;
+    int activePowerupCount = 0;
     InputAction moveAction;
     Vector2 MoveVector;
     Rigidbody2D rb;
@@ -63,16 +64,23 @@ public class PlayerController : MonoBehaviour
         canControlPlayer = false;
     }
     void ResetSpeed() {
+        activePowerupCount--;
         baseSpeed = 8f;
         boostSpeed = 10f;
-        snowTrail.startColor = Color.white;
+        if (activePowerupCount == 0) {
+            snowTrail.startColor = Color.white;
+        }
     }
     void ResetTorque() {
+        activePowerupCount--;
         torqueAmount = 7f;
-        snowTrail.startColor = Color.white;
+        if (activePowerupCount == 0) {
+            snowTrail.startColor = Color.white;
+        }
     }
     public void ActivatePowerup(PowerupSO powerup)
     {
+        activePowerupCount++;
         if (powerup.GetPowerupType() == "speed") {
             baseSpeed += powerup.GetValueChange();
             boostSpeed += powerup.GetValueChange();

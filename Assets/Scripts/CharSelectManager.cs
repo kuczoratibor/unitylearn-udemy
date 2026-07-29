@@ -25,4 +25,5 @@ public class CharSelectManager : MonoBehaviour
         frogSprite.SetActive(true);
         BeginGame();
     }
+    //Course 3 fininshed, yay!
 }

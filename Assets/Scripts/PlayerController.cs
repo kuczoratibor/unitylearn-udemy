@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float torqueAmount = 1f;
     [SerializeField] float baseSpeed = 8f;
     [SerializeField] float boostSpeed = 10f;
+    [SerializeField] ScoreManager scoreManager;
     float totalRotation = 0f;
     float previousRotation = 0f;
     int activePowerupCount = 0;
@@ -14,13 +15,11 @@ public class PlayerController : MonoBehaviour
     Vector2 MoveVector;
     Rigidbody2D rb;
     SurfaceEffector2D surfaceEffector2D;
-    ScoreManager scoreManager;
     bool canControlPlayer = true;
     void Start() {
         moveAction = InputSystem.actions.FindAction("Move");
         rb = GetComponent<Rigidbody2D>();
         surfaceEffector2D = FindFirstObjectByType<SurfaceEffector2D>();
-        scoreManager = FindFirstObjectByType<ScoreManager>();
     }
 
     void Update()
